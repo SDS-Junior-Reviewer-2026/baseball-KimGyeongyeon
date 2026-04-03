@@ -18,7 +18,19 @@ public class Game {
         if (answer.equals(input)) {
             return new GameResult(true, LENGTH, 0);
         }
-        return new GameResult(false, 0, 0);
+        int strike = 0;
+        int balls = 0;
+        for (int i = 0; i < LENGTH; i++) {
+            char ci = input.charAt(i);
+            for (int j = 0; j < LENGTH; j++) {
+                char ansj = this.answer.charAt(j);
+                if (ci == ansj) {
+                    if (i == j) strike++;
+                    else balls++;
+                }
+            }
+        }
+        return new GameResult(false, strike, balls);
     }
 
     private void validateInput(String input) throws IllegalArgumentException {
@@ -32,7 +44,7 @@ public class Game {
 
     private static boolean hasDuplicatedNumber(String input) {
         for (int i = 0; i < LENGTH; i++) {
-            for (int j = i+1; j < LENGTH; j++) {
+            for (int j = i + 1; j < LENGTH; j++) {
                 if (i != j && input.charAt(i) == input.charAt(j)) {
                     return true;
                 }
