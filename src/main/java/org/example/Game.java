@@ -16,7 +16,7 @@ public class Game {
         validateInput(input);
 
         if (answer.equals(input)) {
-            return new GameResult(true, LENGTH, 0);
+            return GameResult.solved(LENGTH);
         }
         int strike = 0;
         int balls = 0;
@@ -30,7 +30,7 @@ public class Game {
                 }
             }
         }
-        return new GameResult(false, strike, balls);
+        return GameResult.unSolved(strike, balls);
     }
 
     private void validateInput(String input) throws IllegalArgumentException {

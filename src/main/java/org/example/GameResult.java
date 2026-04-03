@@ -11,6 +11,14 @@ public class GameResult {
         this.balls = balls;
     }
 
+    static GameResult solved(int length) {
+        return new GameResult(true, length, 0);
+    }
+
+    static GameResult unSolved(int strike, int balls) {
+        return new GameResult(false, strike, balls);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
