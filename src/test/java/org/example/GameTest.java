@@ -52,4 +52,10 @@ public class GameTest {
         assertIllegalArgument("12s");
     }
 
+    @Test
+    void throwExceptionWhenInputHasDuplicateNumber() {
+        assertIllegalArgument("112");
+        assertIllegalArgument("121");
+        assertIllegalArgument("111");
+    }
 }
