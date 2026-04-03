@@ -6,14 +6,28 @@ public class Game {
     private static final int LENGTH = 3;
     private static final String regex = "\\d{3}";
     private static final Pattern pattern = Pattern.compile(regex);
-    public void guess(String input) throws IllegalArgumentException {
+    private String answer;
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public GameResult guess(String input) throws IllegalArgumentException {
+        validateInput(input);
+
+        if (answer.equals(input)) {
+            return new GameResult(true, LENGTH, 0);
+        }
+        return null;
+    }
+
+    private void validateInput(String input) throws IllegalArgumentException {
         if (input == null || !pattern.matcher(input).matches()) {
             throw new IllegalArgumentException("input should be 3-digit string");
         }
         if (hasDuplicatedNumber(input)) {
             throw new IllegalArgumentException("input should contains different characters");
         }
-
     }
 
     private static boolean hasDuplicatedNumber(String input) {
