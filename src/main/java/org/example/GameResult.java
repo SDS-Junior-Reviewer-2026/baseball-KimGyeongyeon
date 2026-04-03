@@ -1,9 +1,9 @@
 package org.example;
 
 public class GameResult {
-    public boolean solved;
-    public int strike;
-    public int balls;
+    private boolean solved;
+    private int strike;
+    private int balls;
 
     public GameResult(boolean solved, int strike, int balls) {
         this.solved = solved;
@@ -19,5 +19,17 @@ public class GameResult {
         }
         return false;
 
+    }
+
+    public boolean isSolved() {
+        return solved;
+    }
+
+    public int getStrike() {
+        return strike;
+    }
+
+    public int getBalls() {
+        return balls;
     }
 }
