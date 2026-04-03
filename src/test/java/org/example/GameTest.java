@@ -21,22 +21,22 @@ public class GameTest {
 
     @Test
     void throwExceptionWhenInputIsNull() {
-        Assertions.assertThrows(IllegalArgumentException.class, ()->{
-            game.guess(null);
-        });
+        assertIllegalArgument(null);
     }
 
     @Test
     void throwExceptionWhenInputIsShorterThan3Digits() {
-        Assertions.assertThrows(IllegalArgumentException.class, ()->{
-            game.guess("1");
-        });
+        assertIllegalArgument("1");
     }
 
     @Test
     void throwExceptionWhenInputIsLongerThan3Digits() {
+        assertIllegalArgument("123456");
+    }
+
+    private void assertIllegalArgument(String input) {
         Assertions.assertThrows(IllegalArgumentException.class, ()->{
-            game.guess("123456");
+            game.guess(input);
         });
     }
 }
