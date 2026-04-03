@@ -7,6 +7,12 @@ import org.junit.jupiter.api.Test;
 public class GameTest {
     private Game game;
 
+    private void assertIllegalArgument(String input) {
+        Assertions.assertThrows(IllegalArgumentException.class, ()->{
+            game.guess(input);
+        });
+    }
+
     @BeforeEach
     public void setUp() {
         game = new Game();
@@ -16,6 +22,13 @@ public class GameTest {
     void createGame() {
         Assertions.assertDoesNotThrow(()->{
             Game game = new Game();
+        });
+    }
+
+    @Test
+    void doesNotThrowWhenValidInput() {
+        Assertions.assertDoesNotThrow(()->{
+            game.guess("789");
         });
     }
 
@@ -34,9 +47,9 @@ public class GameTest {
         assertIllegalArgument("123456");
     }
 
-    private void assertIllegalArgument(String input) {
-        Assertions.assertThrows(IllegalArgumentException.class, ()->{
-            game.guess(input);
-        });
+    @Test
+    void throwExceptionWhenInputIsNotNumber() {
+        assertIllegalArgument("12s");
     }
+
 }
