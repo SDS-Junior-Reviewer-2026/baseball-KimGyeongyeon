@@ -18,7 +18,7 @@ public class Game {
         if (answer.equals(input)) {
             return new GameResult(true, LENGTH, 0);
         }
-        return null;
+        return new GameResult(false, 0, 0);
     }
 
     private void validateInput(String input) throws IllegalArgumentException {

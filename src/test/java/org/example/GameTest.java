@@ -76,4 +76,17 @@ public class GameTest {
                 .isNotNull()
                 .isEqualTo(expected);
     }
+
+    @Test
+    void returnFailResultIfAllDifferentNumbers() {
+        // given
+        game.setAnswer("123");
+        // when
+        GameResult result = game.guess("456");
+        // then
+        GameResult expected = new GameResult(false, 0, 0);
+        assertThat(result)
+                .isNotNull()
+                .isEqualTo(expected);
+    }
 }
