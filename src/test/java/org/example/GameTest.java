@@ -17,6 +17,15 @@ public class GameTest {
         });
     }
 
+    private void assertMatchedGameResult(GameResult actual, GameResult expected) {
+        assertThat(actual).isNotNull()
+        .isEqualTo(expected);
+    }
+
+    private void setAnswer(String answer) {
+        game.setAnswer(answer);
+    }
+
     @BeforeEach
     public void setUp() {
         game = new Game();
@@ -67,26 +76,22 @@ public class GameTest {
     @Test
     void returnSolvedResultIfMatchedNumber() {
         // given
-        game.setAnswer("123");
+        setAnswer("123");
         // when
         GameResult result = game.guess("123");
         // then
         GameResult expected = new GameResult(true, 3, 0);
-        assertThat(result)
-                .isNotNull()
-                .isEqualTo(expected);
+        assertMatchedGameResult(expected, result);
     }
 
     @Test
     void returnFailResultIfAllDifferentNumbers() {
         // given
-        game.setAnswer("123");
+        setAnswer("123");
         // when
         GameResult result = game.guess("456");
         // then
         GameResult expected = new GameResult(false, 0, 0);
-        assertThat(result)
-                .isNotNull()
-                .isEqualTo(expected);
+        assertMatchedGameResult(expected, result);
     }
 }
